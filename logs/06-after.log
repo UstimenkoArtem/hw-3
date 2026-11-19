@@ -1,0 +1,2 @@
+app-1  | 2026-11-19 12:31:00,269 listening port=8000 storage=sqlite
+app-1  | 2026-11-19 12:31:08,430 http 172.19.0.1 "GET / HTTP/1.1" 200 -

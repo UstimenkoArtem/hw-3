@@ -1,0 +1,113 @@
+﻿**********************
+Начало записи сценария Windows PowerShell
+Время начала: 20261119164917
+Имя пользователя: DESKTOP-6GGF0GJ\ASUS
+Запуск от имени пользователя: DESKTOP-6GGF0GJ\ASUS
+Имя конфигурации: 
+Компьютер: DESKTOP-6GGF0GJ (Microsoft Windows NT 10.0.26200.0)
+Ведущее приложение: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ИД процесса: 9396
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Транскрибирование запущено, выходной файл logs/08-checks.txt
+PS C:\Users\ASUS\Documents\docker-homework> 
+curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 1, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> 
+curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 2, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> 
+curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 3, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> 
+curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 4, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> 
+curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 5, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -fsS http://localhost:8081/
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 5, "hostname": "4e14a850c1a8", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> docker compose down
+[+] down 3/3
+ ✔ Container docker-homework-app-1   Removed                                                                                                    3.4s
+ ✔ Container docker-homework-redis-1 Removed                                                                                                    0.3s
+ ✔ Network docker-homework_default   Removed                                                                                                    0.3s
+PS C:\Users\ASUS\Documents\docker-homework> docker compose up -d --wait
+[+] up 3/3
+ ✔ Network docker-homework_default   Created                                                                                                    0.0s
+ ✔ Container docker-homework-redis-1 Healthy                                                                                                    3.9s
+ ✔ Container docker-homework-app-1   Healthy                                                                                                    3.7s
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -fsS http://localhost:8081/
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 5, "hostname": "020d26d6587b", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> docker compose stop redis
+[+] stop 1/1
+ ✔ Container docker-homework-redis-1 Stopped                                                                                                    0.3s
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -sS -i http://localhost:8081/healthz
+HTTP/1.0 200 OK
+Server: BaseHTTP/0.6 Python/3.13.18
+Date: Thu, 19 Nov 2026 13:51:05 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 19
+Cache-Control: no-store
+
+{"status": "alive"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -sS -i http://localhost:8081/readyz
+HTTP/1.0 503 Service Unavailable
+Server: BaseHTTP/0.6 Python/3.13.18
+Date: Thu, 19 Nov 2026 13:51:17 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 32
+Cache-Control: no-store
+
+{"error": "storage_unavailable"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -sS -i http://localhost:8081/
+HTTP/1.0 503 Service Unavailable
+Server: BaseHTTP/0.6 Python/3.13.18
+Date: Thu, 19 Nov 2026 13:51:39 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 32
+Cache-Control: no-store
+
+{"error": "storage_unavailable"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -sS -i -X POST http://localhost:8081/increment
+HTTP/1.0 503 Service Unavailable
+Server: BaseHTTP/0.6 Python/3.13.18
+Date: Thu, 19 Nov 2026 13:51:52 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 32
+Cache-Control: no-store
+
+{"error": "storage_unavailable"}
+PS C:\Users\ASUS\Documents\docker-homework> 
+docker compose start redis
+[+] start 1/1
+ ✔ Container docker-homework-redis-1 Started                                                                                                    0.2s
+PS C:\Users\ASUS\Documents\docker-homework> docker compose exec redis redis-cli ping
+PONG
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -sS -i http://localhost:8081/readyz
+HTTP/1.0 200 OK
+Server: BaseHTTP/0.6 Python/3.13.18
+Date: Thu, 19 Nov 2026 13:52:50 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 39
+Cache-Control: no-store
+
+{"status": "ready", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -fsS http://localhost:8081/
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 5, "hostname": "020d26d6587b", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> curl.exe -fsS -X POST http://localhost:8081/increment
+{"greeting": "Compose_Привет_мы_твои_враги!", "count": 6, "hostname": "020d26d6587b", "storage": "redis"}
+PS C:\Users\ASUS\Documents\docker-homework> cmd /c "docker compose logs --no-color > logs\08-compose.log 2>&1"
+
+PS C:\Users\ASUS\Documents\docker-homework> Stop-Transcript
+**********************
+Конец записи протокола Windows PowerShell
+Время окончания: 20261119165322
+**********************

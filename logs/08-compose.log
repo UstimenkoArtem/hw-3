@@ -1,0 +1,52 @@
+redis-1  | 1:C 19 Nov 2026 13:49:55.149 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Nov 2026 13:49:55.149 * Redis version=7.4.12, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 19 Nov 2026 13:49:55.149 * Configuration loaded
+redis-1  | 1:M 19 Nov 2026 13:49:55.150 * monotonic clock: POSIX clock_gettime
+redis-1  | 1:M 19 Nov 2026 13:49:55.151 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Nov 2026 13:49:55.152 * Server initialized
+redis-1  | 1:M 19 Nov 2026 13:49:55.152 * Reading RDB base file on AOF loading...
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * Loading RDB produced by version 7.4.12
+app-1    | 2026-11-19 13:49:58,395 listening port=8000 storage=redis
+app-1    | 2026-11-19 13:50:00,338 http 172.19.0.1 "GET / HTTP/1.1" 200 -
+app-1    | 2026-11-19 13:51:05,373 http 172.19.0.1 "GET /healthz HTTP/1.1" 200 -
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * RDB age 92 seconds
+app-1    | 2026-11-19 13:51:17,454 storage_unavailable: ConnectionError
+app-1    | 2026-11-19 13:51:17,455 http 172.19.0.1 "GET /readyz HTTP/1.1" 503 -
+app-1    | 2026-11-19 13:51:39,071 storage_unavailable: ConnectionError
+app-1    | 2026-11-19 13:51:39,071 http 172.19.0.1 "GET / HTTP/1.1" 503 -
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * RDB memory usage when created 0.90 Mb
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * RDB is base AOF
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * DB loaded from base file appendonly.aof.1.base.rdb: 0.001 seconds
+app-1    | 2026-11-19 13:51:52,263 storage_unavailable: ConnectionError
+app-1    | 2026-11-19 13:51:52,263 http 172.19.0.1 "POST /increment HTTP/1.1" 503 -
+app-1    | 2026-11-19 13:52:50,351 http 172.19.0.1 "GET /readyz HTTP/1.1" 200 -
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.000 seconds
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * DB loaded from append only file: 0.001 seconds
+redis-1  | 1:M 19 Nov 2026 13:49:55.153 * Opening AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1  | 1:M 19 Nov 2026 13:49:55.154 * Ready to accept connections tcp
+app-1    | 2026-11-19 13:52:57,823 http 172.19.0.1 "GET / HTTP/1.1" 200 -
+app-1    | 2026-11-19 13:53:04,845 http 172.19.0.1 "POST /increment HTTP/1.1" 200 -
+redis-1  | 1:signal-handler (1795096258) Received SIGTERM scheduling shutdown...
+redis-1  | 1:M 19 Nov 2026 13:50:58.927 * User requested shutdown...
+redis-1  | 1:M 19 Nov 2026 13:50:58.927 * Calling fsync() on the AOF file.
+redis-1  | 1:M 19 Nov 2026 13:50:58.928 * Saving the final RDB snapshot before exiting.
+redis-1  | 1:M 19 Nov 2026 13:50:58.933 * DB saved on disk
+redis-1  | 1:M 19 Nov 2026 13:50:58.933 # Redis is now ready to exit, bye bye...
+redis-1  | 1:C 19 Nov 2026 13:52:31.989 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 19 Nov 2026 13:52:31.989 * Redis version=7.4.12, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 19 Nov 2026 13:52:31.989 * Configuration loaded
+redis-1  | 1:M 19 Nov 2026 13:52:31.989 * monotonic clock: POSIX clock_gettime
+redis-1  | 1:M 19 Nov 2026 13:52:31.991 * Running mode=standalone, port=6379.
+redis-1  | 1:M 19 Nov 2026 13:52:31.991 * Server initialized
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * Reading RDB base file on AOF loading...
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * Loading RDB produced by version 7.4.12
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * RDB age 248 seconds
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * RDB memory usage when created 0.90 Mb
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * RDB is base AOF
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * DB loaded from base file appendonly.aof.1.base.rdb: 0.000 seconds
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.000 seconds
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * DB loaded from append only file: 0.001 seconds
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * Opening AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1  | 1:M 19 Nov 2026 13:52:31.992 * Ready to accept connections tcp

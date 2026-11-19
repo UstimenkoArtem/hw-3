@@ -1,0 +1,13 @@
+services:
+  app:
+    environment:
+      STORAGE: sqlite
+      DATA_FILE: /data/counter.db
+      GREETING: "${GREETING:-Hello, Docker!}"
+    volumes:
+      - counter_data:/data
+    build: .
+    ports:
+      - "${APP_PORT:-8081}:8000"
+volumes:
+  counter_data:
